@@ -44,11 +44,8 @@ public class PackageMain
 		int choice, location, volume;
 		float weight, weight2, tempWeight;
 		String trackingNo, type, spec, mClass;
-		String[] types = {"Postcard", "Letter", "Envelope", "Packet", "Box", "Crate", "Drum", "Roll", "Tube"};
-		String[] specification = {"Fragile", "Books", "Catalogs", "Do-Not-Bend", "N/A"};
-		String[] mailingClass = {"First-Class", "Priority", "Retail", "Ground", "Metro"};
 		String dashes = new String(new char[65]).replace("\0", "-");
-
+/*
 		//Checks if file for initial database values exists, then imports records.
 		if(file.exists())
 		{
@@ -60,8 +57,6 @@ public class PackageMain
 				String line = inFile.nextLine();
 				String[] words = line.split(" ");
 
-				/* Basic validation for file correctness, in case each line is separated by an empty line.
-				*/
 				if (words.length == 6)
 				{
 					// Assigns values to variables to import.
@@ -77,10 +72,11 @@ public class PackageMain
 			}
 			inFile.close();
 		}
+*/
 
 		do // Shows menu and requests user input until 6 is entered.
 		{
-			menu();
+			Menu.menu();
 			do // Asks for user's input until input is valid.
 			{
 				System.out.print("Value must be between 1 - 6: ");
@@ -146,8 +142,8 @@ public class PackageMain
 					System.out.print("Enter package's volume: ");
 					volume = getInt();
 
-					Package package1 = new Package(trackingNo, type, spec, mClass, weight, volume);
-					list1.add(package1);
+					//Package package1 = new Package(trackingNo, type, spec, mClass, weight, volume);
+					//list1.add(package1);
 					break;
 
 				case 3:
@@ -256,62 +252,6 @@ public class PackageMain
 		outFile.close();
 	}
 
-	/**
-		Prints menu for user to navigate program.
-	*/
-	public static void menu()
-	{
-		System.out.println("\nAvailable options:");
-		System.out.println("1. Show all packages");
-		System.out.println("2. Add package to database");
-		System.out.println("3. Remove package from database");
-		System.out.println("4. Search for a package by tracking number.");
-		System.out.println("5. Show a list of packages within a weight range");
-		System.out.println("6. Exit the program\n");
-	}
-
-	/**
-		Prints menu for user to choose a type.
-	*/
-	public static void typeMenu()
-	{
-		System.out.println("\nType of package:");
-		System.out.println("1. Postcard");
-		System.out.println("2. Letter");
-		System.out.println("3. Envelope");
-		System.out.println("4. Packet");
-		System.out.println("5. Box");
-		System.out.println("6. Crate");
-		System.out.println("7. Drum");
-		System.out.println("8. Roll");
-		System.out.println("9. Tube");
-	}
-
-	/**
-		Prints menu for user to choose a specification.
-	*/
-	public static void specMenu()
-	{
-		System.out.println("\nSpecification of package:");
-		System.out.println("1. Fragile");
-		System.out.println("2. Books");
-		System.out.println("3. Catalogs");
-		System.out.println("4. Do-Not-bend");
-		System.out.println("5. N/A");
-	}
-
-	/**
-		Prints menu for user to choose a mailing class.
-	*/
-	public static void mailingClassMenu()
-	{
-		System.out.println("\nPackage's mailing class:");
-		System.out.println("1. First-Class");
-		System.out.println("2. Priority");
-		System.out.println("3. Retail");
-		System.out.println("4. Ground");
-		System.out.println("5. Metro");
-	}
 
 	/**
 		Prints header for console output.

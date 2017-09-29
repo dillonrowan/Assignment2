@@ -6,7 +6,7 @@ package database;
 	@version 10/04/2017
  */
 
-public class User
+public class User implements Comparable
 {
 	/**
 		@param	idNo Employee's ID number (int).

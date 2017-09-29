@@ -6,7 +6,7 @@ package database;
 	@version 10/04/2017
  */
 
-public class Package
+public class Package implements Comparable
 {
 	/**
 		@param	trackingNumber Package's tracking number (string).
