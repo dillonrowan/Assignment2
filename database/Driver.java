@@ -1,9 +1,9 @@
 package database;
 
 /**
-	A class for tracking packaged mail information.
-	@author Bruno Blanco
-	@version 09/20/2017
+	A driver class for the assignment.
+	@author Bruno Blanco, Dillon Rowan
+	@version 10/04/2017
  */
 
 import java.util.*;
@@ -28,23 +28,19 @@ public class Driver
 		float weight2 - holds second boundary for search for weight.
 		float tempWeight - value used for comparison of weight for search.
 		String trackingNo, type, spec, mClass - see volume.
-		String[] types - Array with all possible package types, this is done to
-							reduce the user input checking. Input only needs to
-							be an integer within the range.
-		String[] specification - see String[] types.
-		String[] mailingClass - String[] types.
-		String dashes - String with 65x'-', for display formatting.
 		*/
-		ArrayList<Package> list1 = new ArrayList<Package>();
-		ArrayList<Package> list2 = new ArrayList<Package>();
-		ListIterator<Package> it;// = list1.listIterator();
+		ArrayList<Package> packageList = new ArrayList<Package>();
+		ArrayList<User> userList = new ArrayList<User>();
+		ArrayList<Store> storeList = new ArrayList<Store>();
+		ListIterator<Package> itP;
+		ListIterator<User> itU;
+		ListIterator<Store> itS;
 		File file = new File("packages.txt");
 		Scanner sc = new Scanner(System.in);
 		boolean done = false;
 		int choice, location, volume;
 		float weight, weight2, tempWeight;
 		String trackingNo, type, spec, mClass;
-		String dashes = new String(new char[65]).replace("\0", "-");
 /*
 		//Checks if file for initial database values exists, then imports records.
 		if(file.exists())
@@ -79,28 +75,29 @@ public class Driver
 			Menu.menu();
 			do // Asks for user's input until input is valid.
 			{
-				System.out.print("Value must be between 1 - 6: ");
+				System.out.print("Value must be between 0 - 9: ");
 				choice = getInt();
-			}while (!(0 < choice && choice < 7));
+			}while (!(0 =< choice && choice =< 9));
 
 			switch(choice)
 			{
 				case 1:
-				// Uses iterator it print Packages.
+				// Show all packages in database, ordered by tracking ID.
+					Collections.sort(list1);
 					it = list1.listIterator();
 					if (it.hasNext())
 					{
-						printHeader();
+						Menu.printPHeader();
 						while (it.hasNext())
 						{
 							Package tempPackage = it.next();
 						}
 
-						System.out.println(dashes);
+						Menu.printDashes();
 					}
 					else
 						System.out.println("No packages to display.");
-					break;
+				break;
 
 				case 2:
 				/* Add package to database, firsts requests all Package information from user, then creates a new Package, then adds it to list1 */
@@ -137,7 +134,7 @@ public class Driver
 
 					//Package package1 = new Package(trackingNo, type, spec, mClass, weight, volume);
 					//list1.add(package1);
-					break;
+				break;
 
 				case 3:
 				/* Remove package from database and echoes number removed.
@@ -156,7 +153,7 @@ public class Driver
 						}
 
 					System.out.println(numRemoved+" pacakages removed.");
-					break;
+				break;
 
 				case 4:
 				// Search for a package by tracking number, then display.
@@ -181,7 +178,7 @@ public class Driver
 							{
 								Package tempPackage = it.next();
 							}
-							System.out.println(dashes);
+							Menu.printDashes();
 							list2.clear(); // Resets list2 for future use.
 						}
 						else // No packages matching tracking number found.
@@ -189,40 +186,29 @@ public class Driver
 					}
 					else // User input not correct length.
 						System.out.println("Tracking number input invalid.");
-					break;
+				break;
 
 				case 5:
-				// Prints all packages within a weight range.
-					System.out.print("Enter first weight boundary: ");
-					weight = getFloat();
-					System.out.print("Enter second weight boundary: ");
-					weight2 = getFloat();
+					// Show list of all users in database.
+				break;
 
-					// Forces weight2 to be upper-bound and weight to be lower-bound.
-					if (weight > weight2)
-					{
-						tempWeight = weight;
-						weight = weight2;
-						weight2 = tempWeight;
-					}
+				case 6:
+					// Add new user to database.
+				break;
 
-					// Displays all Packages in list2.
-					it = list2.listIterator();
-					if (it.hasNext())
-					{
-						printHeader();
-						while (it.hasNext())
-						{
-							Package tempPackage = it.next();
-						}
-						System.out.println(dashes);
-						list2.clear(); // Resets list2 for later use.
-					}
-					else // Output in case no Packages are within specified range.
-						System.out.println("No packages in the specified range.");
-					break;
+				case 7:
+					// Update user.
+				break;
 
-				default: // 6 - Exit program, stops outer loop
+				case 8:
+					// Complete a shipping transaction.
+				break;
+
+				case 9:
+					// Show completed shipping transaction.
+				break;
+
+				default: // 0 - Exit program, stops outer loop
 					done = true;
 					break;
 			}
@@ -237,13 +223,7 @@ public class Driver
 	/**
 		Prints header for console output.
 	*/
-	public static void printHeader()
-	{
-		String dashes = new String(new char[65]).replace("\0", "-");
-		System.out.println(dashes);
-		System.out.println("|TRACKING #|    TYPE|SPECIFICATION|      CLASS|   WEIGHT| VOLUME|");
-		System.out.println(dashes);
-	}
+
 
 	/**
 		Validates user's input to int.

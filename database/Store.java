@@ -1,17 +1,20 @@
 package database;
 
 /**
-	A class for tracking packaged mail information.
-	@author Bruno Blanco
+	A class for tracking completed shipping transactions.
+	@author Bruno Blanco, Dillon Rowan
 	@version 10/04/2017
  */
 
 public class Store
 {
 	/**
-		@param	idNo Employee's ID number (int).
-		@param	first_name Employee's first name (string).
-		@param 	last_name Employee's last name (string).
+		@param custID Customer which received package.
+		@param trackingNo Tracking number for package delivered.
+		@param shipDate Date package was shipped.
+		@param delDate Date package was delivered.
+		@param cost Amount paid for package.
+		@param empID Employee who completed transaction.
 	*/
 
 	public Store(int custID, String trackingNo, String shipDate, String delDate, float cost, int empID)

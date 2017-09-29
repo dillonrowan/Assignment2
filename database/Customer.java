@@ -1,9 +1,9 @@
 package database;
 
 /**
-	A class for tracking packaged mail information.
-	@author Bruno Blanco
-	@version 09/20/2017
+	Child class of User, specifically for customers.
+	@author Bruno Blanco, Dillon Rowan
+	@version 10/04/2017
  */
 
 public class Customer extends User

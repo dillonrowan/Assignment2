@@ -1,8 +1,8 @@
 package database;
 
 /**
-	A class for tracking packaged mail information.
-	@author Bruno Blanco
+	A helper class to handle all menus and simplify String input from user.
+	@author Bruno Blanco, Dillon Rowan
 	@version 10/04/2017
  */
 
@@ -65,6 +65,34 @@ public class Menu
 		}
 
 		/**
+			Prints header for package classes.
+		*/
+		public static void printPHeader()
+		{
+			printDashes();
+			System.out.println("|TRACKING #|SPECIFICATION|      CLASS|ADDITIONAL 1|ADDITIONAL 2|");
+			printDashes();
+		}
+
+		/**
+			Prints header for user classes.
+		*/
+		public static void printUHeader()
+		{
+			printDashes();
+			System.out.println("|TRACKING #|SPECIFICATION|      CLASS|ADDITIONAL 1|ADDITIONAL 2|");
+			printDashes();
+		}
+
+		/**
+			Prints dashes.
+		*/
+		public static void printDashes()
+		{
+			System.out.println(dashes);
+		}
+
+		/**
 			Returns exact option chosen in specMenu, automatically accounts for the -1.
 		*/
 		public static String getSpecification(int i)
@@ -82,4 +110,5 @@ public class Menu
 
 		private static String[] specification = {"Fragile", "Books", "Catalogs", "Do-Not-Bend", "N/A"};
 		private static String[] mailingClass = {"First-Class", "Priority", "Retail", "Ground", "Metro"};
+		private String dashes = new String(new char[63]).replace("\0", "-");
 }

@@ -1,8 +1,8 @@
 package database;
 
 /**
-	A class for tracking packaged mail information.
-	@author Bruno Blanco
+	Parent class for users input into database.
+	@author Bruno Blanco, Dillon Rowan
 	@version 10/04/2017
  */
 
