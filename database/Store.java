@@ -14,7 +14,7 @@ public class Store
 		@param 	last_name Employee's last name (string).
 	*/
 
-	public User(int custID, String trackingNo, String shipDate, String delDate, float cost, int empID)
+	public Store(int custID, String trackingNo, String shipDate, String delDate, float cost, int empID)
 	{
 		this.customerID = custID;
 		this.trackingNumber = trackingNo;

@@ -6,7 +6,7 @@ package database;
 	@version 10/04/2017
  */
 
-public class User implements Comparable
+public class User implements Comparable <User>
 {
 	/**
 		@param	idNo Employee's ID number (int).
@@ -20,6 +20,13 @@ public class User implements Comparable
 		this.fName = first_name;
 		this.lName = last_name;
 	}
+
+	public int compareTo(User other)
+	{
+		int compareID = ((User) other).getID();
+		return this.ID - compareID;
+	}
+
 	/**
 		Getter for private member ID.
 		@return User's ID.

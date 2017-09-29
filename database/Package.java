@@ -6,7 +6,7 @@ package database;
 	@version 10/04/2017
  */
 
-public class Package implements Comparable
+public class Package implements Comparable <Package>
 {
 	/**
 		@param	trackingNumber Package's tracking number (string).
@@ -20,11 +20,16 @@ public class Package implements Comparable
 		this.mailingClass = mClass;
 	}
 
+	public int compareTo(Package other)
+	{
+		return this.trackingNo.compareTo(other.getTrackingNumber());
+	}
+
 	/**
 		Getter for private member tracking number.
 		@return package's tracking number as a String.
 	*/
-	public String getTrackingNo()
+	public String getTrackingNumber()
 	{
 		return trackingNo;
 	}

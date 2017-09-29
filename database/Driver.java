@@ -9,7 +9,7 @@ package database;
 import java.util.*;
 import java.io.*;
 
-public class PackageMain
+public class Driver
 {
 	public static void main(String[] args) throws Exception
 	{
@@ -94,7 +94,6 @@ public class PackageMain
 						while (it.hasNext())
 						{
 							Package tempPackage = it.next();
-							tempPackage.showPackage();
 						}
 
 						System.out.println(dashes);
@@ -116,31 +115,25 @@ public class PackageMain
 					// Asks user for type from menu until valid input is received.
 					do
 					{
-						typeMenu();
+						Menu.typeMenu();
 						choice = getInt();
 					} while (!(0 < choice && choice < 10));
-					type = types[choice-1];
 
 					// Asks user for specification from menu until valid input is received.
 					do
 					{
-						specMenu();
+						Menu.specMenu();
 						choice = getInt();
 					} while (!(0 < choice && choice < 6));
-					spec = specification[choice-1];
+					spec = Menu.getSpecification(choice);
 
 					// Asks user for mailing class from menu until valid input is received.
 					do
 					{
-						mailingClassMenu();
+						Menu.mailingClassMenu();
 						choice = getInt();
 					} while (!(0 < choice && choice < 6));
-					mClass = mailingClass[choice-1];
-
-					System.out.print("Enter package's weight: ");
-					weight = getFloat();
-					System.out.print("Enter package's volume: ");
-					volume = getInt();
+					mClass = Menu.getMailingClass(choice);
 
 					//Package package1 = new Package(trackingNo, type, spec, mClass, weight, volume);
 					//list1.add(package1);
@@ -155,7 +148,7 @@ public class PackageMain
 					int numRemoved = 0;
 
 					for (int i = 0; i < list1.size(); i++)
-						if (trackingNo.equals(list1.get(i).getTrackingNo()))
+						if (trackingNo.equals(list1.get(i).getTrackingNumber()))
 						{
 							numRemoved++;
 							System.out.println("Removing package.");
@@ -176,7 +169,7 @@ public class PackageMain
 						/* Adds all packages which match the tracking number are added to list2, as there is no check for duplicates within the list.
 						*/
 						for (Package tempPackage : list1)
-							if (trackingNo.equals(tempPackage.getTrackingNo()))
+							if (trackingNo.equals(tempPackage.getTrackingNumber()))
 								list2.add(tempPackage);
 
 						// Same as case 1 above, prints all values in list2.
@@ -187,7 +180,6 @@ public class PackageMain
 							while (it.hasNext())
 							{
 								Package tempPackage = it.next();
-								tempPackage.showPackage();
 							}
 							System.out.println(dashes);
 							list2.clear(); // Resets list2 for future use.
@@ -214,14 +206,6 @@ public class PackageMain
 						weight2 = tempWeight;
 					}
 
-					// Adds all Packages within bounds to list2.
-					for (int i = 0; i < list1.size(); i++)
-					{
-						tempWeight = list1.get(i).getWeightInOz();
-						if (weight <= tempWeight && tempWeight <= weight2)
-							list2.add(list1.get(i));
-					}
-
 					// Displays all Packages in list2.
 					it = list2.listIterator();
 					if (it.hasNext())
@@ -230,7 +214,6 @@ public class PackageMain
 						while (it.hasNext())
 						{
 							Package tempPackage = it.next();
-							tempPackage.showPackage();
 						}
 						System.out.println(dashes);
 						list2.clear(); // Resets list2 for later use.
@@ -247,8 +230,6 @@ public class PackageMain
 
 		// Write list1 to file.
 		PrintWriter outFile = new PrintWriter("packages.txt");
-		for(Package tempPackage : list1)
-			tempPackage.showPackage(outFile);
 		outFile.close();
 	}
 

@@ -8,7 +8,6 @@ package database;
 
 public class Menu
 {
-
 		/**
 			Prints menu for user to navigate program.
 		*/
@@ -68,7 +67,7 @@ public class Menu
 		/**
 			Returns exact option chosen in specMenu, automatically accounts for the -1.
 		*/
-		public static String getSpec(int i)
+		public static String getSpecification(int i)
 		{
 			return specification[i-1];
 		}
@@ -81,6 +80,6 @@ public class Menu
 			return mailingClass[i-1];
 		}
 
-		private String[] specification = {"Fragile", "Books", "Catalogs", "Do-Not-Bend", "N/A"};
-		private String[] mailingClass = {"First-Class", "Priority", "Retail", "Ground", "Metro"};
+		private static String[] specification = {"Fragile", "Books", "Catalogs", "Do-Not-Bend", "N/A"};
+		private static String[] mailingClass = {"First-Class", "Priority", "Retail", "Ground", "Metro"};
 }
